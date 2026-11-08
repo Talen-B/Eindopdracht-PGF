@@ -11,7 +11,7 @@ def show_login(user_manager):
             ["Log in", "Register a new account", "Guest account (Wiki only)", "Close the app"]
         )
         match choice:
-            case "1":
+            case 1:
                 username = Prompt.ask("[bold cyan]Username[/bold cyan]")
                 password = Prompt.ask("[bold red]Password[/bold red]")
                 user = user_manager.login(username, password)
@@ -20,7 +20,7 @@ def show_login(user_manager):
                 else:
                     console.print("[red]Invalid login.[/red]")
                     continue
-            case "2":
+            case 2:
                 while True:
                     console.print("[dim]Press [Enter] to cancel.[/dim]")
                     username = input("Username: ")
@@ -38,9 +38,9 @@ def show_login(user_manager):
                     else:
                         print("Invalid input")
                         break
-            case "3":
+            case 3:
                 pass #TODO Guest account
-            case "4":
+            case 4:
                 exit()
             case _:
                 print("Please enter a valid choice")

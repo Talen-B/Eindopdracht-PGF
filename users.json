@@ -1,14 +1,37 @@
 {
-    "Bem": {
-        "username": "Bem",
-        "password": "123"
-    },
-    "Brem": {
-        "username": "Brem",
-        "password": "123"
-    },
-    "Bemm": {
-        "username": "Bemm",
-        "password": "123"
+    "bem": {
+        "username": "bem",
+        "password": "",
+        "teams": {
+            "team1": {
+                "pokemon": {
+                    "25": {
+                        "name": "pikachu"
+                    },
+                    "151": {
+                        "name": "mew"
+                    },
+                    "4": {
+                        "name": "charmander"
+                    },
+                    "6": {
+                        "name": "charizard"
+                    }
+                }
+            },
+            "pika": {
+                "pokemon": {
+                    "25": {
+                        "name": "pikachu"
+                    },
+                    "2": {
+                        "name": "ivysaur"
+                    },
+                    "151": {
+                        "name": "mew"
+                    }
+                }
+            }
+        }
     }
 }

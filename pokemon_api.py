@@ -1,21 +1,45 @@
 import requests
-from rich.console import Console
 from rich.panel import Panel
 
-console = Console()
+from menus import menuTemplate
+
+console = menuTemplate.console
 BASE_URL = "https://pokeapi.co/api/v2"
 TIMEOUT = 10
 
 def get_pokemon(name):
-    response = requests.get(
-        f"{BASE_URL}/pokemon/{name}/",
-        timeout=TIMEOUT
-    )
-    response.raise_for_status()
+    url = f"{BASE_URL}/pokemon/{name}"
 
-    return response.json()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
 
-def show_pokemon(pokemon):
+
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 404:
+            print("Pokémon not found!")
+        else:
+            print(f"HTTP error: {e}")
+
+        return None
+
+    except requests.exceptions.RequestException as e:
+        print(f"API connection error: {e}")
+        return None
+
+def search_pokemon():
+    while True:
+        name = input("What Pokémon are you looking for?: ")
+        pokemon = get_pokemon(name)
+
+        if pokemon is not None:
+            return pokemon
+
+        console.print("[bold red]Pokémon not found! Try again.[/bold red]")
+        return None
+
+def pokemon_details(pokemon):
     types = ", ".join(
         item["type"]["name"].capitalize()
         for item in pokemon["types"]
@@ -27,7 +51,7 @@ def show_pokemon(pokemon):
     )
 
     details = (
-        f"[bold]Name:[/bold] {pokemon['name'.capitalize()]}\n"
+        f"[bold]Name:[/bold] {pokemon['name'].capitalize()}\n"
         f"[bold]ID:[/bold] {pokemon['id']}\n"
         f"[bold]Type:[/bold] {types}\n"
         f"[bold]Height:[/bold] {pokemon['height'] / 10} m\n"
@@ -37,11 +61,14 @@ def show_pokemon(pokemon):
         #TODO Evolutions
     )
 
+    return details
+
+def show_pokemon(pokemon):
     console.print(Panel(
-        details,
+        pokemon_details(pokemon),
         title=f"[bold yellow]{pokemon['name'].capitalize()}[/bold yellow]",
         border_style="green",
-        width= 48
+        width=48,
     ))
 
 def show_ability_text(pokemon):
@@ -62,14 +89,15 @@ def show_ability_text(pokemon):
             None
         )
 
-        effect = (explanation["short_effect"] if explanation else "No explanation found")
+        effect = explanation["short_effect"] if explanation else "No explanation found"
 
-        text.append(f"[bold cyan]{ability}[/bold cyan]\n{effect})")
+        text.append(f"[bold cyan]{ability.capitalize()}[/bold cyan]\n{effect}")
 
     console.print(Panel(
-        "\n\n".join(text)
-    ))
+        "\n\n".join(text) or "No abilities listed.",
+        title = f"[bold yellow]{pokemon["name"].capitalize()} Abilities[/bold yellow]",
+        border_style = "green",
+        width = 48,
+    ), "[dim]Press [Enter] to continue.[/dim]")
+    input()
 
-
-
-show_ability_text(get_pokemon(3))

@@ -12,7 +12,8 @@ class UserManager:
             for username, user_data in users_data.items():
                 self.users[username] = User.User(
                     user_data["username"],
-                    user_data["password"]
+                    user_data["password"],
+                    user_data["teams"]
                 )
 
         except (FileNotFoundError, json.JSONDecodeError):
@@ -29,7 +30,7 @@ class UserManager:
     def new_user(self, username, password):
         if username in self.users:
             return "Username exists"
-        user = User.User(username, password)
+        user = User.User(username, password, teams={})
         self.users[username] = user
         self.save_users()
         return True
@@ -45,3 +46,32 @@ class UserManager:
 
     def logout(self):
         self.current_user = None
+
+    def new_team(self, team_name):
+        if team_name in self.current_user.teams:
+             return False
+
+        self.current_user.teams[team_name] = {"pokemon": {}}
+        self.save_users()
+        return True
+
+    def add_pokemon(self, pokemon, team_name):
+        if pokemon["name"] in self.current_user.teams[team_name]["pokemon"].values():
+            return False
+        elif len(self.current_user.teams[team_name]["pokemon"].keys()) == 6:
+            return "Full"
+        pokemon_id = pokemon["id"]
+
+        self.current_user.teams[team_name]["pokemon"].update({
+            pokemon_id: {
+                "name" : pokemon["name"]
+            }
+        })
+        self.save_users()
+        return True
+
+    def delete_pokemon(self, pokemon, team_name):
+        pokemon_id = str(pokemon["id"])
+        del self.current_user.teams[team_name]["pokemon"][pokemon_id]
+        self.save_users()
+        return True
