@@ -16,6 +16,12 @@
                     },
                     "6": {
                         "name": "charizard"
+                    },
+                    "52": {
+                        "name": "meowth"
+                    },
+                    "58": {
+                        "name": "growlithe"
                     }
                 }
             },
@@ -29,6 +35,22 @@
                     },
                     "151": {
                         "name": "mew"
+                    },
+                    "6": {
+                        "name": "charizard"
+                    },
+                    "7": {
+                        "name": "squirtle"
+                    },
+                    "419": {
+                        "name": "floatzel"
+                    }
+                }
+            },
+            "Bemteam": {
+                "pokemon": {
+                    "58": {
+                        "name": "growlithe"
                     }
                 }
             }

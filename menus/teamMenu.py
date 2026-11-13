@@ -1,8 +1,10 @@
 from rich.prompt import Prompt
 
+from UserManager import UserManager
 from menus import searchMenu
 from menus.menuTemplate import show_menu, console
-from pokemon_api import pokemon_details, show_ability_text, search_pokemon, get_pokemon
+from pokemon_api import pokemon_details, show_ability_text, search_pokemon, get_pokemon, get_type_effectiveness, \
+    format_type_effectiveness, show_type_effectiveness
 
 
 def show_team_menu(user_manager):
@@ -29,12 +31,12 @@ def show_team_menu(user_manager):
 
 def new_team_menu(user_manager):
     while True:
-        console.print("[dim]Press [Enter] to cancel.[/dim]")
+        console.print("[dim]Type 0 to cancel.[/dim]")
         team_name = Prompt.ask("[bold cyan]What's the team name?[/bold cyan]")
-        if not team_name:
+        if team_name == "0":
             return
         team = user_manager.new_team(team_name)
-        if not team:
+        if team == UserManager.ALREADY_EXISTS:
             console.print("[red]Team name already exists.[/red]")
             continue
         else:
@@ -69,6 +71,10 @@ def edit_team_menu(user, team_name, user_manager):
 
 def edit_pokemon_menu(pokemon_name, team_name, user_manager):
     pokemon = get_pokemon(pokemon_name)
+    if pokemon is None:
+        console.print("[red]Could not retrieve the current Pokémon data.[/red]")
+        return
+
     while True:
         choice = show_menu(
             f"{pokemon_name}",
@@ -80,12 +86,14 @@ def edit_pokemon_menu(pokemon_name, team_name, user_manager):
                 while True:
                     choice = show_menu(
                         pokemon_name,
-                        ["Explain Abilities", "Back"],
+                        ["Type effectiveness", "Explain Abilities", "Back"],
                         body=pokemon_details(pokemon),
                     )
                     if choice == 1:
-                        show_ability_text(pokemon)
+                        show_type_effectiveness(pokemon_name)
                     elif choice == 2:
+                        show_ability_text(pokemon)
+                    elif choice == 3:
                         break
                     else:
                         console.print("Please enter a valid option.")
@@ -102,6 +110,7 @@ def edit_pokemon_menu(pokemon_name, team_name, user_manager):
                             replacement = search_pokemon()
                             if replacement is not None:
                                 replace_pokemon_menu(pokemon,replacement, user_manager, team_name)
+
                         case 2:
                             pass #type
                         case 3:
@@ -115,7 +124,7 @@ def edit_pokemon_menu(pokemon_name, team_name, user_manager):
                     )
                     if choice == 1:
                         result = user_manager.delete_pokemon(pokemon, team_name)
-                        if result:
+                        if result == UserManager.SUCCESS:
                             console.print(f"[bold green]{pokemon_name} successfully released.[/bold green]")
                             return
                         else:
@@ -142,7 +151,7 @@ def replace_pokemon_menu(pokemon, replacement, user_manager, team_name):
                 user_manager.delete_pokemon(pokemon, team_name)
                 result = user_manager.add_pokemon(replacement, team_name)
                 pokemon_name = pokemon["name"].capitalize()
-                if result:
+                if result == UserManager.SUCCESS:
                     console.print(f"[bold cyan]{replacement_name} successfully replaced {pokemon_name}![/bold cyan]")
                     return
                 else:

@@ -1,8 +1,8 @@
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import Prompt, IntPrompt
+from rich.prompt import Prompt
 
-console = Console()
+console = Console(force_terminal=True, legacy_windows=False, highlight=False)
 
 def show_menu(title, options, body=None):
     items = "\n".join(
