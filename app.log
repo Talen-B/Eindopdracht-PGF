@@ -28,3 +28,48 @@
 2026-11-14 13:13:04,437 - INFO - User blem successfully logged in
 2026-11-14 13:15:31,566 - INFO - User blem successfully logged in
 2026-11-14 13:16:33,809 - INFO - User blem successfully logged in
+2026-11-14 13:30:44,783 - INFO - User talen registered
+2026-11-14 13:30:51,589 - INFO - User talen successfully logged in
+2026-11-14 13:31:48,479 - INFO - User talen created team talensteam
+2026-11-14 13:35:10,812 - INFO - User bram successfully logged in
+2026-11-14 13:35:27,207 - INFO - User bram successfully logged in
+2026-11-14 13:36:33,985 - INFO - User bram successfully logged in
+2026-11-14 13:38:07,955 - INFO - User bram successfully logged in
+2026-11-14 13:40:22,053 - WARNING - Failed login attempt for user aw
+2026-11-14 13:40:27,741 - INFO - User talen registered
+2026-11-14 13:40:33,057 - INFO - User talen successfully logged in
+2026-11-14 13:40:39,714 - INFO - User talen created team taleno
+2026-11-14 13:43:06,480 - INFO - User bram registered
+2026-11-14 13:43:11,943 - INFO - User bram successfully logged in
+2026-11-14 13:43:52,431 - INFO - User bram created team bramsteam
+2026-11-14 13:44:04,210 - INFO - Pokemon mew added to team bramsteam by user: Username: bram
+2026-11-14 13:46:11,988 - WARNING - Failed login attempt for user 
+2026-11-14 13:46:16,681 - INFO - User 00 registered
+2026-11-14 13:47:44,314 - WARNING - Failed login attempt for user 
+2026-11-14 13:53:36,066 - WARNING - Failed login attempt for user bem
+2026-11-14 13:53:42,141 - INFO - User bem registered
+2026-11-14 13:53:50,755 - INFO - User bem successfully logged in
+2026-11-14 13:54:04,532 - INFO - User bem created team fwmaf
+2026-11-14 13:54:07,341 - INFO - User bem created team moawem  aw
+2026-11-14 14:00:00,801 - INFO - User bem successfully logged in
+2026-11-14 14:00:20,615 - INFO - User bem created team afwf
+2026-11-14 14:00:30,821 - INFO - User bem deleted team afwf
+2026-11-14 14:00:34,421 - INFO - User bem deleted team moawem  aw
+2026-11-14 14:00:37,997 - INFO - User bem deleted team fwmaf
+2026-11-14 14:00:41,145 - INFO - User bem created team awf
+2026-11-14 14:00:53,445 - INFO - Pokemon mew added to team awf by user: Username: bem
+2026-11-14 14:03:01,933 - INFO - User bram registered
+2026-11-14 14:03:07,959 - INFO - User bram successfully logged in
+2026-11-14 14:03:27,098 - INFO - User bram created team Bram Team
+2026-11-14 14:04:07,221 - INFO - Pokemon mew added to team Bram Team by user: Username: bram
+2026-11-14 14:04:43,147 - INFO - User bram created team aw
+2026-11-14 14:05:02,727 - INFO - User bram logged out
+2026-11-14 14:08:38,137 - WARNING - Failed login attempt for user 3
+2026-11-14 14:09:31,804 - INFO - User bem registered
+2026-11-14 14:11:00,944 - INFO - User bram registered
+2026-11-14 14:11:07,109 - INFO - User bram successfully logged in
+2026-11-14 14:11:25,274 - INFO - User bram created team Brams Team
+2026-11-14 14:12:24,493 - INFO - Pokemon mew added to team Brams Team by user: Username: bram
+2026-11-14 14:13:13,331 - INFO - User bram deleted team Brams Team
+2026-11-14 14:13:22,152 - INFO - User bram created team Brams Team
+2026-11-14 14:13:38,109 - INFO - User bram logged out

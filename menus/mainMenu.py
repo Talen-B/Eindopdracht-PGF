@@ -1,10 +1,9 @@
 from rich.console import Console
 
 from UserManager import UserManager
-from menus import searchMenu, teamMenu
+from menus import searchMenu, teamMenu, menuTemplate
 from menus.menuTemplate import show_menu
-
-console = Console(force_terminal=True, legacy_windows=False, highlight=False)
+console = menuTemplate.console
 
 def show_main(user_manager):
     while True:

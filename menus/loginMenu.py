@@ -1,10 +1,9 @@
 from rich.prompt import Prompt
 from UserManager import UserManager
-from menus import mainMenu
-from rich.console import Console
+from menus import mainMenu, menuTemplate
 from menus.menuTemplate import show_menu
 
-console = Console(force_terminal=True, legacy_windows=False, highlight=False)
+console = menuTemplate.console
 
 def show_login(user_manager):
     while True:

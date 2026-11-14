@@ -4,7 +4,7 @@ from UserManager import UserManager
 from menus.menuTemplate import show_menu
 from pokemon_api import *
 
-console = Console(force_terminal=True, legacy_windows=False, highlight=False)
+console = menuTemplate.console
 
 def show_pokemon_search(user_manager):
     while True:
@@ -57,7 +57,7 @@ def add_to_team_menu(pokemon, user_manager):
         )
         if choice == len(options):
             return
-        elif choice != type(int):
+        elif type(choice) != int:
             continue
         else:
             while True:

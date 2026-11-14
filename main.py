@@ -14,4 +14,5 @@ def main():
     user_manager = UserManager()
     loginMenu.show_login(user_manager)
 
-main()
+if __name__ == '__main__':
+    main()

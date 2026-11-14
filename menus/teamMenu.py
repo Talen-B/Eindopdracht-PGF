@@ -20,11 +20,10 @@ def show_team_menu(user_manager):
             return
         elif choice == len(options) - 1:
             new_team_menu(user_manager)
-        elif choice == type(int) and 0 < choice <= len(user.teams.keys()):
+        elif type(choice) == int and 0 < choice <= len(user.teams.keys()):
             team_name = options[choice - 1]
             edit_team_menu(user, team_name, user_manager)
         else:
-            console.print("[bold red]Please enter a valid option.[/bold red]")
             continue
 
 
@@ -48,7 +47,7 @@ def edit_team_menu(user, team_name, user_manager):
     while True:
         pokemons = [pokemon["name"].capitalize() for pokemon in team["pokemon"].values()]
         pokemon_amount = len(pokemons)
-        options = pokemons + (["Add new pokemon"] if pokemon_amount < 6 else []) + ["Back"]
+        options = pokemons + (["Add new pokemon"] if pokemon_amount < 6 else []) + ["Delete team", "Back"]
 
         choice = show_menu(
             f"{team_name}'s Pokémon",
@@ -59,11 +58,28 @@ def edit_team_menu(user, team_name, user_manager):
         )
         if choice == len(options):
             return
-        elif pokemon_amount < 6 and choice == len(options) - 1:
+        elif pokemon_amount < 6 and choice == len(options) - 2:
             searchMenu.show_pokemon_search(user_manager)
-        elif choice == type(int) and 0 < choice <= pokemon_amount:
+        elif type(choice) == int and 0 < choice <= pokemon_amount:
             pokemon_name = options[choice - 1]
             edit_pokemon_menu(pokemon_name, team_name, user_manager)
+        elif choice == len(options) - 1:
+            while True:
+                choice = show_menu(
+                    f"Delete {team_name}?",
+                    ["Yes", "No, go back"],
+                    body="[bold red]This will delete the entire team![/bold red]\nDo you want to continue?",
+                )
+                if choice == 1:
+                    result = user_manager.delete_team(team_name)
+                    if result == UserManager.SUCCESS:
+                        console.print(f"[bold green]{team_name} successfully deleted.[/bold green]")
+                        return
+                    else:
+                        console.print(f"There was a problem deleting {team_name}.")
+                        break
+                elif choice == 2:
+                    break
         else:
             continue
 

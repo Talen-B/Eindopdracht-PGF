@@ -121,6 +121,18 @@ class UserManager:
         )
         return self.SUCCESS
 
+    def delete_team(self, team_name):
+        del self.current_user.teams[team_name]
+
+        self.save_users()
+
+        logger.info(
+            "User %s deleted team %s",
+            self.current_user.username, team_name
+        )
+
+        return self.SUCCESS
+
     def add_pokemon(self, pokemon, team_name):
         pokemon_id = str(pokemon["id"])
         pokemon_team = self.current_user.teams[team_name]["pokemon"]
