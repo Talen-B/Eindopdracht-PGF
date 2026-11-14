@@ -1,6 +1,6 @@
 {
-    "bem": {
-        "username": "bem",
+    "bram": {
+        "username": "bram",
         "password": "",
         "teams": {
             "team1": {
@@ -25,7 +25,7 @@
                     }
                 }
             },
-            "pika": {
+            "teampika": {
                 "pokemon": {
                     "25": {
                         "name": "pikachu"
@@ -47,7 +47,7 @@
                     }
                 }
             },
-            "Bemteam": {
+            "teambram": {
                 "pokemon": {
                     "58": {
                         "name": "growlithe"

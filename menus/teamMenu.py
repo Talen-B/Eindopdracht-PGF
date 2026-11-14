@@ -3,8 +3,7 @@ from rich.prompt import Prompt
 from UserManager import UserManager
 from menus import searchMenu
 from menus.menuTemplate import show_menu, console
-from pokemon_api import pokemon_details, show_ability_text, search_pokemon, get_pokemon, get_type_effectiveness, \
-    format_type_effectiveness, show_type_effectiveness
+from pokemon_api import pokemon_details, show_ability_text, search_pokemon, get_pokemon, show_type_effectiveness
 
 
 def show_team_menu(user_manager):
@@ -21,7 +20,7 @@ def show_team_menu(user_manager):
             return
         elif choice == len(options) - 1:
             new_team_menu(user_manager)
-        elif 0 < choice <= len(user.teams.keys()):
+        elif choice == type(int) and 0 < choice <= len(user.teams.keys()):
             team_name = options[choice - 1]
             edit_team_menu(user, team_name, user_manager)
         else:
@@ -62,11 +61,10 @@ def edit_team_menu(user, team_name, user_manager):
             return
         elif pokemon_amount < 6 and choice == len(options) - 1:
             searchMenu.show_pokemon_search(user_manager)
-        elif 0 < choice <= pokemon_amount:
+        elif choice == type(int) and 0 < choice <= pokemon_amount:
             pokemon_name = options[choice - 1]
             edit_pokemon_menu(pokemon_name, team_name, user_manager)
         else:
-            console.print("[bold red]Please enter a valid option.[/bold red]")
             continue
 
 def edit_pokemon_menu(pokemon_name, team_name, user_manager):
@@ -96,24 +94,22 @@ def edit_pokemon_menu(pokemon_name, team_name, user_manager):
                     elif choice == 3:
                         break
                     else:
-                        console.print("Please enter a valid option.")
                         continue
             case 2:
                 while True:
                     choice = show_menu(
                         "Select replacement Pokémon",
-                        ["Search by name", "Search by type", "Back"],
+                        ["Search by name", "Back"],
                         body=f"Currently replacing: {pokemon_name}"
                     )
                     match choice:
                         case 1:
                             replacement = search_pokemon()
+                            if pokemon is None:
+                                return
                             if replacement is not None:
                                 replace_pokemon_menu(pokemon,replacement, user_manager, team_name)
-
                         case 2:
-                            pass #type
-                        case 3:
                             break
             case 3:
                 while True:

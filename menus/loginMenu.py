@@ -42,5 +42,3 @@ def show_login(user_manager):
                         break
             case 3:
                 exit()
-            case _:
-                print("Please enter a valid choice")

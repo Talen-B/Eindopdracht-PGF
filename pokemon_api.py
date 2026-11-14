@@ -132,8 +132,8 @@ def get_type_effectiveness(pokemon_name):
 
 def format_type_effectiveness(effectiveness):
     """
-    Makes the effectiveness dict so that I can use it in my menu_template.
-    returns the body i can add to my menu.
+    Uses the effectiveness dict so that I can use it in my menu_template.
+    returns the body I can add to my menu.
 
     :param effectiveness:
     :return (Rich)String:
